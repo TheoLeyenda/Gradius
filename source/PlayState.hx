@@ -45,5 +45,17 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
+		
+		//esto despues se hace con colisiones, no entiendo el ogmo ~José
+		if (FlxG.keys.justPressed.I) 
+		{
+			wachin.kill();
+			Global.vidas--;
+			
+			if (Global.vidas != 0) 
+			{
+				wachin.revive();
+			}
+		}
 	}
 }
