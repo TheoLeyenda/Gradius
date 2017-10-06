@@ -10,10 +10,14 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
  */
 class Wachin extends FlxSprite 
 {
+	var bulletTime:Float;
+	var timeToShoot:Bool;
 
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
+		
+		bulletTime = 0;
 		
 	}
 	
@@ -21,7 +25,25 @@ class Wachin extends FlxSprite
 	override public function update(elapsed:Float):Void 
 	{
 		super.update(elapsed);
+		timeToShoot = false;
 		movimiento();
+		shoot();
+		bulletTime++;
+		if (bulletTime == 25)
+			bulletTime = 0;
+	}
+	
+	private function shoot():Void
+	{
+		if (FlxG.keys.pressed.J) 
+		{
+			if (bulletTime == 0) 
+			{
+				var bala:Bala = new Bala(x + width / 2, y + height / 2);
+				FlxG.state.add(bala);
+			}
+		}
+		
 	}
 	
 	private function movimiento():Void
