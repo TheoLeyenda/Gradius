@@ -24,7 +24,7 @@ class Wachin extends FlxSprite
 	{
 		super.update(elapsed);
 		movimiento();
-		limite();
+		//limite();
 		shoot();
 		timeToShoot = false;
 		bulletTime++;
@@ -47,7 +47,7 @@ class Wachin extends FlxSprite
 	}
 	private function movimiento():Void
 	{
-		velocidad = 20;
+		velocidad = 4;
 		if(FlxG.keys.pressed.D){
 			x = x + velocidad * FlxG.elapsed * FlxG.updateFramerate;
 		}
@@ -63,7 +63,7 @@ class Wachin extends FlxSprite
 	}
 	private function limite():Void
 	{
-		if (x >= FlxG.camera.scroll.x)
+		if (x >= FlxG.camera.scroll.x-width)
 		{
 			x= FlxG.camera.scroll.x-width;
 		}
@@ -75,7 +75,7 @@ class Wachin extends FlxSprite
 		{
 			y = FlxG.camera.scroll.y;
 		}
-		if (y >= FlxG.camera.scroll.y)
+		if (y >= FlxG.camera.scroll.y-height)
 		{
 			y = FlxG.camera.scroll.y-height;
 		}
