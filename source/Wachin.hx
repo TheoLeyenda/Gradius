@@ -10,29 +10,29 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
  */
 class Wachin extends FlxSprite 
 {
-	var bulletTime:Float;
-	var timeToShoot:Bool;
+	private var velocidad:Int;
+	private var bulletTime :Int;
+	private var timeToShoot:Bool;
 
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
-		
 		bulletTime = 0;
-		
 	}
-	
 	
 	override public function update(elapsed:Float):Void 
 	{
 		super.update(elapsed);
-		timeToShoot = false;
 		movimiento();
+		limite();
 		shoot();
+		timeToShoot = false;
 		bulletTime++;
 		if (bulletTime == 25)
+		{
 			bulletTime = 0;
+		}
 	}
-	
 	private function shoot():Void
 	{
 		if (FlxG.keys.pressed.J) 
@@ -45,11 +45,9 @@ class Wachin extends FlxSprite
 		}
 		
 	}
-	
 	private function movimiento():Void
 	{
-		var velocidad:Int;
-		velocidad = 4;
+		velocidad = 20;
 		if(FlxG.keys.pressed.D){
 			x = x + velocidad * FlxG.elapsed * FlxG.updateFramerate;
 		}
@@ -63,5 +61,23 @@ class Wachin extends FlxSprite
 			y = y - velocidad * FlxG.elapsed * FlxG.updateFramerate;
 		}
 	}
-	
+	private function limite():Void
+	{
+		if (x >= FlxG.camera.scroll.x)
+		{
+			x= FlxG.camera.scroll.x-width;
+		}
+		if (x <= FlxG.camera.scroll.x)
+		{
+			x = FlxG.camera.scroll.x;
+		}
+		if (y <= FlxG.camera.scroll.y)
+		{
+			y = FlxG.camera.scroll.y;
+		}
+		if (y >= FlxG.camera.scroll.y)
+		{
+			y = FlxG.camera.scroll.y-height;
+		}
+	}
 }

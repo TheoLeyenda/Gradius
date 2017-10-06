@@ -1,3 +1,10 @@
+
+
+
+
+//ESTE ESTADO NO SE ESTA USANDO PORQUE EL MAIN LLAMA A : SclollingState
+
+
 package;
 
 import flixel.FlxG;
@@ -6,14 +13,16 @@ import flixel.addons.editors.ogmo.FlxOgmoLoader;
 import flixel.tile.FlxTile;
 import flixel.tile.FlxTilemap;
 import flixel.FlxState;
-
+//ESTE ESTADO NO SE ESTA USANDO PORQUE EL MAIN LLAMA A : SclollingState
 class PlayState extends FlxState
 {
 	private var wachin:Wachin;
 	private var tilemap:FlxTilemap;
-	
+	private var Camarita:BigBrother;
+	//ESTE ESTADO NO SE ESTA USANDO PORQUE EL MAIN LLAMA A : SclollingState
 	override public function create():Void
 	{
+		//ESTE ESTADO NO SE ESTA USANDO PORQUE EL MAIN LLAMA A : SclollingState
 		super.create();
 		
 		var loader:FlxOgmoLoader = new FlxOgmoLoader(AssetPaths.lvlproto__oel);
@@ -28,11 +37,11 @@ class PlayState extends FlxState
 		tilemap.setTileProperties(6, FlxObject.ANY);
 		tilemap.setTileProperties(7, FlxObject.ANY);
 		tilemap.setTileProperties(8, FlxObject.ANY);
-		
+		//add(Camarita);
 		add(tilemap);
 		add(wachin);
 	}
-
+//ESTE ESTADO NO SE ESTA USANDO PORQUE EL MAIN LLAMA A : SclollingState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
