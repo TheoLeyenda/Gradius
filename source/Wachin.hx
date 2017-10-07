@@ -17,6 +17,8 @@ class Wachin extends FlxSprite
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
+		velocity.x = 0;
+		velocity.y = 0;
 		bulletTime = 0;
 	}
 	
@@ -24,7 +26,7 @@ class Wachin extends FlxSprite
 	{
 		super.update(elapsed);
 		movimiento();
-		//limite();
+		limite();
 		shoot();
 		timeToShoot = false;
 		bulletTime++;
@@ -63,21 +65,29 @@ class Wachin extends FlxSprite
 	}
 	private function limite():Void
 	{
-		if (x >= FlxG.camera.scroll.x-width)
+		if (x >= FlxG.camera.scroll.x+241)//NO CAMBIAR EL NUMERO 241 DE ESTA LINEA
 		{
-			x= FlxG.camera.scroll.x-width;
+			velocity.x = 0;
+			x = FlxG.camera.scroll.x + 241;//NO CAMBIAR EL NUMERO 241 DE ESTA LINEA
 		}
+		
+		if (y >= FlxG.camera.scroll.y+232)//NO CAMBIAR EL NUMERO 232 DE ESTA LINEA
+		{
+			velocity.y = 0;
+			y = FlxG.camera.scroll.y + 232;//NO CAMBIAR EL NUMERO 232 DE ESTA LINEA
+		}
+		
 		if (x <= FlxG.camera.scroll.x)
 		{
+			velocity.x = FlxG.camera.x;
 			x = FlxG.camera.scroll.x;
 		}
+		
 		if (y <= FlxG.camera.scroll.y)
 		{
+			velocity.y = FlxG.camera.y;
 			y = FlxG.camera.scroll.y;
 		}
-		if (y >= FlxG.camera.scroll.y-height)
-		{
-			y = FlxG.camera.scroll.y-height;
-		}
+		
 	}
 }

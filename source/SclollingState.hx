@@ -31,9 +31,9 @@ class SclollingState extends FlxState
 		
 		FlxG.camera.follow(guia);
 		
-		add(p);
-		add(guia);
 		add(background);
+		add(guia);
+		add(p);
 	}
 	
 	override public function update(elapsed:Float):Void 
