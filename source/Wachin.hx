@@ -67,7 +67,7 @@ class Wachin extends FlxSprite
 	{
 		if (x >= FlxG.camera.scroll.x+241)//NO CAMBIAR EL NUMERO 241 DE ESTA LINEA
 		{
-			velocity.x = 0;
+			
 			x = FlxG.camera.scroll.x + 241;//NO CAMBIAR EL NUMERO 241 DE ESTA LINEA
 		}
 		
@@ -79,7 +79,6 @@ class Wachin extends FlxSprite
 		
 		if (x <= FlxG.camera.scroll.x)
 		{
-			velocity.x = FlxG.camera.x;
 			x = FlxG.camera.scroll.x;
 		}
 		
