@@ -19,36 +19,40 @@ import flixel.FlxState;
 class SclollingState extends FlxState 
 {
 	private var tilemap:FlxTilemap;
+	private var persona:Wachin;
 	
 	override public function create():Void 
 	{
 		super.create();
 		
 		//	FONDO QUE SCROLLEA
+		var background:FlxBackdrop = new FlxBackdrop(AssetPaths.PruevaScrolling__png);
+		var guia:FlxSprite = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
+		
 		var loader:FlxOgmoLoader = new FlxOgmoLoader(AssetPaths.LEVEL__oel);
 		tilemap = loader.loadTilemap(AssetPaths.Tiles__png, 16, 16, "Tiles");
-		var background:FlxBackdrop = new FlxBackdrop(AssetPaths.PruevaScrolling__png);
+		tilemap.setTileProperties(0, FlxObject.NONE);
+		tilemap.setTileProperties(1, FlxObject.ANY);
 		
-		
-		var p:Wachin = new Wachin(24,24, AssetPaths.wachin__png);
-		p.x = 200;
-		p.y = 200;
-		var guia:FlxSprite = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
 		guia.makeGraphic(1, 1, 0x00000000);
 		guia.velocity.x = Global.camVelocityX;
-		
-		p.velocity.x = guia.velocity.x;
-		
 		FlxG.camera.follow(guia);
+		
+		persona = new Wachin(24,24, AssetPaths.wachin__png);
+		persona.x = 200;
+		persona.y = 200;
+		persona.velocity.x = guia.velocity.x;
 		
 		add(background);
 		add(tilemap);
 		add(guia);
-		add(p);
+		add(persona);
 	}
 	
 	override public function update(elapsed:Float):Void 
 	{
 		super.update(elapsed);
+		
+		FlxG.collide(tilemap,persona);
 	}
 }
