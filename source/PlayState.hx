@@ -1,34 +1,27 @@
-
-
-
-
-//ESTE ESTADO NO SE ESTA USANDO PORQUE EL MAIN LLAMA A : SclollingState
-
-
 package;
 
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.addons.editors.ogmo.FlxOgmoLoader;
+import flixel.text.FlxText;
 import flixel.tile.FlxTile;
 import flixel.tile.FlxTilemap;
 import flixel.FlxState;
-//ESTE ESTADO NO SE ESTA USANDO PORQUE EL MAIN LLAMA A : SclollingState
 class PlayState extends FlxState
 {
 	private var wachin:Wachin;
 	private var tilemap:FlxTilemap;
-	private var Camarita:BigBrother;
-	//ESTE ESTADO NO SE ESTA USANDO PORQUE EL MAIN LLAMA A : SclollingState
+	private var camarita:BigBrother;
+	private var textVidas:FlxText;
 	override public function create():Void
 	{
-		//ESTE ESTADO NO SE ESTA USANDO PORQUE EL MAIN LLAMA A : SclollingState
 		super.create();
-		
 		var loader:FlxOgmoLoader = new FlxOgmoLoader(AssetPaths.lvlproto__oel);
 		tilemap = loader.loadTilemap(AssetPaths.fideo__png, 16, 16, "tiles");
 		wachin = new Wachin(FlxG.width / 2 - 15, FlxG.height / 2, AssetPaths.wachin__png);
-		tilemap.setTileProperties(0, FlxObject.ANY);
+		camarita = new BigBrother(0, 0);
+		Global.vidas = 3;
+		tilemap.setTileProperties(0, FlxObject.NONE);
 		tilemap.setTileProperties(1, FlxObject.ANY);
 		tilemap.setTileProperties(2, FlxObject.ANY);
 		tilemap.setTileProperties(3, FlxObject.ANY);
@@ -37,25 +30,37 @@ class PlayState extends FlxState
 		tilemap.setTileProperties(6, FlxObject.ANY);
 		tilemap.setTileProperties(7, FlxObject.ANY);
 		tilemap.setTileProperties(8, FlxObject.ANY);
-		//add(Camarita);
+		textVidas = new FlxText(0, 0, 0, "", 16);
+		textVidas.pixelPerfectPosition = false;
+		add(camarita);
 		add(tilemap);
 		add(wachin);
+		add(textVidas);
+		FlxG.worldBounds.set(0, 0, tilemap.width, tilemap.height); // expandir la colision a todo el tilemap
 	}
-//ESTE ESTADO NO SE ESTA USANDO PORQUE EL MAIN LLAMA A : SclollingState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
+		FlxG.collide(wachin, tilemap, collideWachinTilemap);
+		textVidas.setPosition(FlxG.camera.scroll.x , FlxG.height - 20);
+		textVidas.text = "VIDAS " + Global.vidas;
 		
-		//esto despues se hace con colisiones, no entiendo el ogmo ~José
-		if (FlxG.keys.justPressed.I) 
+		if (wachin.alive == false)
 		{
-			wachin.kill();
-			Global.vidas--;
-			
-			if (Global.vidas != 0) 
-			{
-				wachin.revive();
-			}
+			camarita.setCamaraX(200);
+			wachin.reset(1, FlxG.height / 2);
 		}
+		
+		if (Global.vidas == 0)
+		{
+			FlxG.switchState(new PlayState());
+		}
+	}
+	
+	private function collideWachinTilemap(w:Wachin,t:FlxTilemap):Void
+	{
+		Global.vidas -= 1;
+		wachin.kill();
+		
 	}
 }

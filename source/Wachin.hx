@@ -20,6 +20,7 @@ class Wachin extends FlxSprite
 		velocity.x = 0;
 		velocity.y = 0;
 		bulletTime = 0;
+		pixelPerfectPosition = false;
 	}
 	
 	override public function update(elapsed:Float):Void 
