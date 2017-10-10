@@ -10,11 +10,14 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
 class Tiburonsin1 extends Enemigos 
 {
 	private var timeShoot:Float = 0;
+	public var bullet:Bala;
+	
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
 		makeGraphic(16, 16, 0xFF3E4D3A);
 		velocity.x = -10;
+		bullet = new Bala();
 	}
 	
 	override public function update(elapsed:Float):Void 

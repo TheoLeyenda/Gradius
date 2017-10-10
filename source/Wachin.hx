@@ -12,12 +12,16 @@ class Wachin extends FlxSprite
 {
 	private var velocidad:Int;
 	private var bulletTime :Float;
+	public var peew:Bala;
 
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
 		velocity.x = 0;
 		velocity.y = 0;
+		peew = new Bala();
+		peew.kill();
+		FlxG.state.add(peew);
 		bulletTime = 0;
 		pixelPerfectPosition = false;
 	}
@@ -38,9 +42,8 @@ class Wachin extends FlxSprite
 	{
 		if (FlxG.keys.pressed.J && bulletTime == 0) 
 		{
-			var bala:Bala = new Bala(x + width / 2, y + height / 2);
-			FlxG.state.add(bala);
-			bala.velocity.x = 400;
+			peew.reset(x + width / 2, y + height / 2);
+			peew.velocity.x = 400;
 		}
 		
 	}
