@@ -42,8 +42,9 @@ class Wachin extends FlxSprite
 	{
 		if (FlxG.keys.pressed.J && bulletTime == 0) 
 		{
-			peew.reset(x + width / 2, y + height / 2);
-			peew.velocity.x = 400;
+			var bala:Bala = new Bala(x + width / 2, y + height / 2, AssetPaths.Bala__png);
+			FlxG.state.add(bala);
+			bala.velocity.x = 400;
 		}
 		
 	}

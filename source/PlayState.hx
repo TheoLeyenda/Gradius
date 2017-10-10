@@ -3,6 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.addons.editors.ogmo.FlxOgmoLoader;
+import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
 import flixel.tile.FlxTile;
 import flixel.tile.FlxTilemap;
@@ -13,15 +14,15 @@ class PlayState extends FlxState
 	private var tilemap:FlxTilemap;
 	private var camarita:BigBrother;
 	private var textVidas:FlxText;
-	private var tibu:Tiburonsin1;
-	private var tibu2:Tiburonsin2;
-	private var tibu3:Tiburonsin3;
+	private var enemyGroup:FlxTypedGroup<Enemigos>;
 	
 	override public function create():Void
 	{
 		super.create();
+		enemyGroup = new FlxTypedGroup<Enemigos>();
 		var loader:FlxOgmoLoader = new FlxOgmoLoader(AssetPaths.lvlproto__oel);
 		tilemap = loader.loadTilemap(AssetPaths.fideo__png, 16, 16, "tiles");
+		loader.loadEntities(placeEntities, "entities");
 		wachin = new Wachin(FlxG.width / 2 - 15, FlxG.height / 2, AssetPaths.wachin__png);
 		camarita = new BigBrother(0, 0);
 		Global.vidas = 3;
@@ -37,26 +38,19 @@ class PlayState extends FlxState
 		textVidas = new FlxText(0, 0, 0, "", 16);
 		textVidas.pixelPerfectPosition = false;
 		tibu = new Tiburonsin1(249, 80);
-		tibu2 = new Tiburonsin2(249, 1);
-		tibu3 = new Tiburonsin3(249, 100);
-
+		
 		add(camarita);
 		add(tilemap);
 		add(wachin);
+		add(enemyGroup);
 		add(textVidas);
 		add(tibu);
-		add(tibu2);
-		add(tibu3);
 		FlxG.worldBounds.set(0, 0, tilemap.width, tilemap.height); // expandir la colision a todo el tilemap
 	}
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
 		FlxG.collide(wachin, tilemap, collideWachinTilemap);
-		FlxG.collide(wachin, tibu3, choqueTiburonsin);
-		FlxG.collide(tibu, wachin.peew, hit);
-		FlxG.collide(tibu2, wachin.peew, hit2);
-		FlxG.collide(tibu3, wachin.peew, hit3);
 		textVidas.setPosition(FlxG.camera.scroll.x , FlxG.height - 20);
 		textVidas.text = "VIDAS " + Global.vidas;
 		
@@ -77,27 +71,4 @@ class PlayState extends FlxState
 		Global.vidas -= 1;
 		wachin.kill();	
 	}
-	
-	private function choqueTiburonsin(w:Wachin, t:Tiburonsin3):Void
-	{
-		Global.vidas -= 1;
-		wachin.kill();
-	}
-	
-	private function hit(t:Tiburonsin1, b:Bala):Void
-	{
-		tibu.kill();
-		
-	}
-	private function hit2(t:Tiburonsin2, b:Bala):Void
-	{
-		tibu2.kill();
-		
-	}
-	private function hit3(t:Tiburonsin3, b:Bala):Void
-	{
-		tibu3.kill();
-		
-	}
-	
 }

@@ -515,7 +515,11 @@ class ApplicationMain {
 		
 		config = {
 			
+<<<<<<< Updated upstream
 			build: "30",
+=======
+			build: "157",
+>>>>>>> Stashed changes
 			company: "Chimi",
 			file: "Gradius",
 			fps: 60,

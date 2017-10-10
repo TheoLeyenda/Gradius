@@ -17,6 +17,15 @@ class Bala extends FlxSprite
 		
 		makeGraphic(6, 4, 0xffffffff);
 		y -= height / 2;
+		OOB();
+	}
+	
+	private function OOB():Void
+	{
+		if (x >= FlxG.camera.scroll.x || x <= FlxG.camera.scroll.x)
+		{
+			this.destroy;
+		}
 	}
 	
 }
