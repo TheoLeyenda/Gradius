@@ -14,22 +14,14 @@ class Tiburonsin1 extends Enemigos
 	{
 		super(X, Y, SimpleGraphic);
 		makeGraphic(16, 16, 0xFF3E4D3A);
+		velocity.x = -10;
 	}
 	
 	override public function update(elapsed:Float):Void 
 	{
 		super.update(elapsed);
-		
 		checkBound();
-		
-		movement();
-		
 		pewpew();
-	}
-	
-	private function movement():Void
-	{
-		velocity.x = -10;
 	}
 	
 	private function pewpew():Void

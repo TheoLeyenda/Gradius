@@ -65,6 +65,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
 		Font.registerFont (__ASSET__flixel_fonts_nokiafc22_ttf);
 		Font.registerFont (__ASSET__flixel_fonts_monsterrat_ttf);
 		
@@ -74,6 +75,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -591,6 +593,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
 		openfl.text.Font.registerFont (__ASSET__OPENFL__flixel_fonts_nokiafc22_ttf);
 		openfl.text.Font.registerFont (__ASSET__OPENFL__flixel_fonts_monsterrat_ttf);
 		
@@ -608,6 +611,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/data/lvlproto.oel", AssetType.TEXT);
 		path.set ("assets/images/fideo.png", "assets/images/fideo.png");
 		type.set ("assets/images/fideo.png", AssetType.IMAGE);
+		path.set ("assets/images/jhmvfdsuhdfsjbfsd.psd", "assets/images/jhmvfdsuhdfsjbfsd.psd");
+		type.set ("assets/images/jhmvfdsuhdfsjbfsd.psd", AssetType.BINARY);
 		path.set ("assets/images/PruevaScrolling.png", "assets/images/PruevaScrolling.png");
 		type.set ("assets/images/PruevaScrolling.png", AssetType.IMAGE);
 		path.set ("assets/images/Tiles.png", "assets/images/Tiles.png");
@@ -643,6 +648,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 		id = "assets/images/fideo.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
+		id = "assets/images/jhmvfdsuhdfsjbfsd.psd";
+		path.set (id, id);
+		type.set (id, AssetType.BINARY);
 		id = "assets/images/PruevaScrolling.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
@@ -693,6 +701,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -1443,6 +1452,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
 @:keep @:bind #if display private #end class __ASSET__flixel_sounds_beep_ogg extends null { }
 @:keep @:bind #if display private #end class __ASSET__flixel_sounds_flixel_ogg extends null { }
 @:keep @:bind #if display private #end class __ASSET__flixel_fonts_nokiafc22_ttf extends null { }
@@ -1452,6 +1462,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 #elseif html5
+
 
 
 

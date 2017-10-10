@@ -24,6 +24,8 @@ class AssetData {
 			type.set ("assets/data/lvlproto.oel", Reflect.field (AssetType, "text".toUpperCase ()));
 			path.set ("assets/images/fideo.png", "assets/images/fideo.png");
 			type.set ("assets/images/fideo.png", Reflect.field (AssetType, "image".toUpperCase ()));
+			path.set ("assets/images/jhmvfdsuhdfsjbfsd.psd", "assets/images/jhmvfdsuhdfsjbfsd.psd");
+			type.set ("assets/images/jhmvfdsuhdfsjbfsd.psd", Reflect.field (AssetType, "binary".toUpperCase ()));
 			path.set ("assets/images/PruevaScrolling.png", "assets/images/PruevaScrolling.png");
 			type.set ("assets/images/PruevaScrolling.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			path.set ("assets/images/Tiles.png", "assets/images/Tiles.png");

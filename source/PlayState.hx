@@ -64,7 +64,6 @@ class PlayState extends FlxState
 	private function collideWachinTilemap(w:Wachin,t:FlxTilemap):Void
 	{
 		Global.vidas -= 1;
-		wachin.kill();
-		
+		wachin.kill();	
 	}
 }
