@@ -13,6 +13,7 @@ class PlayState extends FlxState
 	private var tilemap:FlxTilemap;
 	private var camarita:BigBrother;
 	private var textVidas:FlxText;
+	private var tibu:Tiburonsin1;
 	override public function create():Void
 	{
 		super.create();
@@ -32,10 +33,13 @@ class PlayState extends FlxState
 		tilemap.setTileProperties(8, FlxObject.ANY);
 		textVidas = new FlxText(0, 0, 0, "", 16);
 		textVidas.pixelPerfectPosition = false;
+		tibu = new Tiburonsin1(249, 80);
+		
 		add(camarita);
 		add(tilemap);
 		add(wachin);
 		add(textVidas);
+		add(tibu);
 		FlxG.worldBounds.set(0, 0, tilemap.width, tilemap.height); // expandir la colision a todo el tilemap
 	}
 	override public function update(elapsed:Float):Void

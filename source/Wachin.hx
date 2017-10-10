@@ -11,7 +11,7 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
 class Wachin extends FlxSprite 
 {
 	private var velocidad:Int;
-	private var bulletTime :Int;
+	private var bulletTime :Float;
 	private var timeToShoot:Bool;
 
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
@@ -29,22 +29,28 @@ class Wachin extends FlxSprite
 		movimiento();
 		limite();
 		shoot();
-		timeToShoot = false;
-		bulletTime++;
-		if (bulletTime == 25)
+		
+		
+		if (timeToShoot == false)
 		{
+			bulletTime += elapsed;
+		}
+		
+		if (bulletTime > 0.3)
+		{
+			timeToShoot = true;
 			bulletTime = 0;
 		}
 	}
 	private function shoot():Void
 	{
-		if (FlxG.keys.pressed.J) 
+		if (FlxG.keys.pressed.J && timeToShoot) 
 		{
-			if (bulletTime == 0) 
-			{
-				var bala:Bala = new Bala(x + width / 2, y + height / 2);
-				FlxG.state.add(bala);
-			}
+			var bala:Bala = new Bala(x + width / 2, y + height / 2);
+			FlxG.state.add(bala);
+			bala.velocity.x = 400;
+			timeToShoot = false;
+			
 		}
 		
 	}
@@ -66,16 +72,16 @@ class Wachin extends FlxSprite
 	}
 	private function limite():Void
 	{
-		if (x >= FlxG.camera.scroll.x+241)//NO CAMBIAR EL NUMERO 241 DE ESTA LINEA
+		if (x >= FlxG.camera.scroll.x + FlxG.width)
 		{
 			
-			x = FlxG.camera.scroll.x + 241;//NO CAMBIAR EL NUMERO 241 DE ESTA LINEA
+			x = FlxG.camera.scroll.x + FlxG.width;
 		}
 		
-		if (y >= FlxG.camera.scroll.y+232)//NO CAMBIAR EL NUMERO 232 DE ESTA LINEA
+		if (y >= FlxG.camera.scroll.y + FlxG.height)
 		{
 			velocity.y = 0;
-			y = FlxG.camera.scroll.y + 232;//NO CAMBIAR EL NUMERO 232 DE ESTA LINEA
+			y = FlxG.camera.scroll.y + FlxG.height;
 		}
 		
 		if (x <= FlxG.camera.scroll.x)
