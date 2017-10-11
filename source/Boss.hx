@@ -1,27 +1,37 @@
 package;
 
 import flixel.FlxG;
-import flixel.FlxSprite;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 
 /**
  * ...
- * @author tsgtsdg
+ * @author ...
  */
-class Bala extends FlxSprite 
+class Boss extends Enemigos 
 {
 
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
-		
+		velocity.y = Global.VelB;
 	}
 	
 	override public function update(elapsed:Float):Void 
 	{
 		super.update(elapsed);
-		velocity.x = 400;
-		if (x <= FlxG.camera.scroll.x)
-		destroy();
-	}		
+		
+		checkBound();
+		
+		if (y >= FlxG.camera.scroll.y + 232)
+		{
+			velocity.y *=-1 ;
+			y = FlxG.camera.scroll.y + 232;
+		}
+		if (y <= FlxG.camera.scroll.y) 
+		{
+			velocity.y *=-1 ;
+			y = FlxG.camera.scroll.y;
+		}
+	}
+	
 }

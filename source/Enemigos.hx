@@ -17,11 +17,20 @@ class Enemigos extends FlxSprite
 		pixelPerfectPosition = false;
 	}
 	
+	override public function update(elapsed:Float):Void
+	{
+		checkBound();
+	}
+	
 	private function checkBound():Void
 	{
-		 if (x > FlxG.camera.scroll.x + FlxG.width || x < FlxG.camera.scroll.x || y > FlxG.camera.scroll.y + FlxG.height || y < FlxG.camera.scroll.y)
+		if (x > FlxG.camera.scroll.x + FlxG.width && x < FlxG.camera.scroll.x && y > FlxG.camera.scroll.y + FlxG.height && y < FlxG.camera.scroll.y)
 		{
 			kill();
+		}
+		else if (x < FlxG.camera.scroll.x + FlxG.width && x > FlxG.camera.scroll.x && y < FlxG.camera.scroll.y + FlxG.height && y > FlxG.camera.scroll.y)
+		{
+			this.revive();
 		}
 	}
 	

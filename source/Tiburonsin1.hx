@@ -15,8 +15,7 @@ class Tiburonsin1 extends Enemigos
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
-		makeGraphic(16, 16, 0xFF3E4D3A);
-		velocity.x = -10;
+		velocity.x = Global.Vel1;
 		bullet = new Bala();
 	}
 	
@@ -35,7 +34,7 @@ class Tiburonsin1 extends Enemigos
 		{
 		var bala:Bala = new Bala(x + width / 2, y + height / 2);
 		FlxG.state.add(bala);
-		bala.velocity.x = - 100;
+		bala.velocity.x =  -100;
 		timeShoot = 0;
 		}
 	}

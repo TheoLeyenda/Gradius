@@ -22,13 +22,16 @@ class BigBrother extends FlxSprite
 		
 		guia = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
 		guia.makeGraphic(1, 1, 0x00000000);
-		guia.velocity.x = Global.camVelocityX;
 		
 		FlxG.camera.follow(guia);
 		
 		FlxG.state.add(guia);
 		FlxG.state.add(fondo);
-		
+	}
+	
+	override public function update(elapsed:Float):Void
+	{
+		guia.velocity.x = Global.camVelocityX;
 	}
 	
 	public function setCamaraX(x:Float)

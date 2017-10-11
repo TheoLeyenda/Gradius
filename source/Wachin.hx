@@ -12,16 +12,13 @@ class Wachin extends FlxSprite
 {
 	private var velocidad:Int;
 	private var bulletTime :Float;
-	public var peew:Bala;
+	private var bala:Bala;
 
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
 		velocity.x = 0;
 		velocity.y = 0;
-		peew = new Bala();
-		peew.kill();
-		FlxG.state.add(peew);
 		bulletTime = 0;
 		pixelPerfectPosition = false;
 	}
@@ -38,16 +35,7 @@ class Wachin extends FlxSprite
 			bulletTime = 0;
 		}
 	}
-	private function shoot():Void
-	{
-		if (FlxG.keys.pressed.J && bulletTime == 0) 
-		{
-			var bala:Bala = new Bala(x + width / 2, y + height / 2, AssetPaths.Bala__png);
-			FlxG.state.add(bala);
-			bala.velocity.x = 400;
-		}
-		
-	}
+
 	private function movimiento():Void
 	{
 		velocidad = 4;
@@ -86,6 +74,16 @@ class Wachin extends FlxSprite
 		{
 			velocity.y = FlxG.camera.y;
 			y = FlxG.camera.scroll.y;
+		}
+		
+	}
+	
+	private function shoot():Void
+	{
+		if (FlxG.keys.pressed.J && bulletTime == 0) 
+		{
+			bala = new Bala(x + width / 2, y + height / 2, AssetPaths.Bala__png);
+			FlxG.state.add(bala);
 		}
 		
 	}
