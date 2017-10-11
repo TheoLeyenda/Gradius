@@ -13,7 +13,7 @@ class Boss extends Enemigos
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
-		velocity.y = Global.VelB;
+		velocity.y = -50 * FlxG.elapsed * FlxG.updateFramerate;
 	}
 	
 	override public function update(elapsed:Float):Void 

@@ -20,7 +20,6 @@ class Bala extends FlxSprite
 	override public function update(elapsed:Float):Void 
 	{
 		super.update(elapsed);
-		velocity.x = 400;
 		if (x <= FlxG.camera.scroll.x)
 		destroy();
 	}		

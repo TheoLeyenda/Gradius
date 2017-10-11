@@ -515,7 +515,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "129",
+			build: "141",
 			company: "Chimi",
 			file: "Gradius",
 			fps: 60,

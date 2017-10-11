@@ -15,7 +15,7 @@ class Tiburonsin1 extends Enemigos
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset) 
 	{
 		super(X, Y, SimpleGraphic);
-		velocity.x = Global.Vel1;
+		velocity.x = -10 * FlxG.elapsed * FlxG.updateFramerate;
 		bullet = new Bala();
 	}
 	

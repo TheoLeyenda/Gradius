@@ -84,6 +84,7 @@ class Wachin extends FlxSprite
 		{
 			bala = new Bala(x + width / 2, y + height / 2, AssetPaths.Bala__png);
 			FlxG.state.add(bala);
+			bala.velocity.x = 400;
 		}
 		
 	}

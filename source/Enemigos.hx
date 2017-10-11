@@ -30,7 +30,10 @@ class Enemigos extends FlxSprite
 		}
 		else if (x < FlxG.camera.scroll.x + FlxG.width && x > FlxG.camera.scroll.x && y < FlxG.camera.scroll.y + FlxG.height && y > FlxG.camera.scroll.y)
 		{
-			this.revive();
+			if (!alive) 
+			{
+				revive();
+			}
 		}
 	}
 	

@@ -72,8 +72,8 @@ class PlayState extends FlxState
 	
 	private function collideWachinTilemap(w:Wachin,t:FlxTilemap):Void
 	{
-		//Global.vidas -= 1;
-		//wachin.kill();	
+		Global.vidas -= 1;
+		wachin.kill();	
 	}
 	
 	private function stopWachin(w:Wachin,s:Enemigos):Void
